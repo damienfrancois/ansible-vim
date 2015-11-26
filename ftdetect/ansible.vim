@@ -1,7 +1,7 @@
 function! DetectAnsible()
   let filepath = expand("%:p")
   let filename = expand("%:t")
-  if filepath =~ '\v/(tasks|roles)/.*\.ya?ml$' || filepath =~ '\v/(group|host)_vars/' || filename =~ '\v(playbook|site)\.ya?ml$'
+  if filepath =~ '\v/(tasks|roles)/.*\.ya?ml$' || filepath =~ '\v/(group|host)_vars/' || filename =~ '\v(playbook|site)\.ya?ml$' || search('- hosts:') > 0
     set ft=ansible
   endif
   unlet filepath
@@ -11,3 +11,5 @@ endfunction
 :au BufNewFile,BufRead *.yml,*yaml,*/{group,host}_vars/*  call DetectAnsible()
 :au BufNewFile,BufRead *.j2 set ft=ansible_template
 :au BufNewFile,BufRead hosts set ft=ansible_hosts
+:au BufNewFile,BufRead inventory set ft=ansible_hosts
+
