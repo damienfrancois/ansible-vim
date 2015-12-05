@@ -19,10 +19,10 @@ let b:current_syntax = ''
 unlet b:current_syntax
 syntax include @Yaml syntax/yaml.vim
 
-let b:current_syntax = ''
-unlet b:current_syntax
-syntax include @Jinja syntax/jinja2.vim
-
+"let b:current_syntax = ''
+"unlet b:current_syntax
+"syntax include @Jinja syntax/jinja2.vim
+"
 " Jinja
 " ================================
 
@@ -36,6 +36,7 @@ highlight link jinjaVarDelim Delimiter
 
 " YAML
 " ================================
+
 
 " Reset some YAML to plain styling
 " the number 80 in Ansible isn't any more important than the word root
@@ -75,6 +76,7 @@ if exists("g:ansible_name_highlight")
   endif
 endif
 
+ 
 syn keyword ansible_debug_keywords debug containedin=yamlBlockMappingKey contained
 highlight link ansible_debug_keywords Debug
 

@@ -8,3 +8,18 @@ endif
 if exists('g:ansible_options["documentation_mapping"]')
   exec 'nmap ' . g:ansible_options["documentation_mapping"] . ' :!ansible-doc <C-R><C-W> *<CR>'
 endif
+
+
+""" Folding {{{
+" :help fold-text
+" http://stackoverflow.com/questions/5983396/change-the-text-in-folds
+" see: 'fillchars', 'foldtext'
+set foldtext=FoldTaskBlock()
+fun! FoldTaskBlock()
+  let line = getline(v:foldstart)
+  "let sub  = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
+  let sub  = substitute(line, '- name: ', '▶ ', 'g')
+  "return v:folddashes . sub
+  return sub . ' '
+endfun
+
